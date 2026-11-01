@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anton Sujarwo - Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            400: '#d97706',
+                            500: '#b45309',
+                            600: '#92400e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --brand-400: #d97706;
+            --brand-500: #b45309;
+            --brand-600: #92400e;
+            --bg-deep: #050505;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.9)),
+                url('assets/anton-portrait.jpg') center center / cover no-repeat fixed;
+            background-color: var(--bg-deep);
+            color: #f8fafc;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.38);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(217, 119, 6, 0.24);
+        }
+
+        .bg-custom-hero {
+            position: relative;
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.88)),
+                url('assets/anton-portrait.jpg') center center / cover no-repeat;
+            filter: grayscale(1);
+        }
+
+        .bg-custom-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.14), rgba(0,0,0,0.50));
+            pointer-events: none;
+        }
+
+        .section-panel {
+            background: rgba(2, 6, 23, 0.56);
+            border-top: 1px solid rgba(217, 119, 6, 0.18);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.18);
+        }
+
+        .card-soft {
+            background: rgba(15, 23, 42, 0.48);
+            border: 1px solid rgba(217, 119, 6, 0.22);
+        }
+
+        .text-shadow-soft {
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral-950 text-slate-100 antialiased selection:bg-brand-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-brand-500/30">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#home" class="text-xl font-bold tracking-wider text-brand-500">ANTON SUJARWO</a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" class="nav-home hover:text-brand-500 transition">Beranda</a>
+                <a href="#about" class="nav-about hover:text-brand-500 transition">Tentang</a>
+                <a href="#skills" class="nav-skills hover:text-brand-500 transition">Keahlian</a>
+                <a href="#projects" class="nav-projects hover:text-brand-500 transition">Proyek</a>
+                <a href="#certificates" class="nav-certificates hover:text-brand-500 transition">Sertifikat</a>
+                <a href="#socials" class="nav-socials hover:text-brand-500 transition">Media Sosial</a>
+                <a href="#contact" class="nav-contact hover:text-brand-500 transition">Kontak</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleLanguage()" id="lang-btn" class="px-3 py-1.5 text-xs font-semibold rounded-full border border-brand-500/50 bg-neutral-900 hover:bg-brand-500/20 transition text-brand-400">
+                    🌐 EN / ID
+                </button>
+
+                <button onclick="toggleMenu()" class="text-white focus:outline-none p-2 md:hidden">
+                    <i class="fa-solid fa-bars text-2xl text-brand-500"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden glass border-b border-brand-500/30 px-6 py-5 space-y-4">
+            <a href="#home" onclick="toggleMenu()" class="block nav-home hover:text-brand-500 font-medium">Beranda</a>
+            <a href="#about" onclick="toggleMenu()" class="block nav-about hover:text-brand-500 font-medium">Tentang</a>
+            <a href="#skills" onclick="toggleMenu()" class="block nav-skills hover:text-brand-500 font-medium">Keahlian</a>
+            <a href="#projects" onclick="toggleMenu()" class="block nav-projects hover:text-brand-500 font-medium">Proyek</a>
+            <a href="#certificates" onclick="toggleMenu()" class="block nav-certificates hover:text-brand-500 font-medium">Sertifikat</a>
+            <a href="#socials" onclick="toggleMenu()" class="block nav-socials hover:text-brand-500 font-medium">Media Sosial</a>
+            <a href="#contact" onclick="toggleMenu()" class="block nav-contact hover:text-brand-500 font-medium">Kontak</a>
+        </div>
+    </header>
+
+    <section id="home" class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 bg-custom-hero relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/30 inline-block mb-6 shadow-lg shadow-brand-500/10" id="hero-badge">
+                Digital Marketing, Copywriting & AI Specialist
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-shadow-soft">
+                Anton <span class="text-brand-500">Sujarwo</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed" id="hero-desc">
+                Profesional di bidang pemasaran digital, copywriting, desain grafis ringan, serta pemanfaatan teknologi AI untuk solusi kreatif & pengembangan platform web.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium transition shadow-lg shadow-brand-600/20 border border-brand-500" id="btn-projects">
+                    Lihat Proyek
+                </a>
+
+                <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl glass hover:bg-neutral-900 text-slate-200 font-medium transition border border-brand-500/30" id="btn-contact">
+                    Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 section-panel">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-brand-500" id="about-title">Tentang Saya</h2>
+            <p class="text-slate-300 text-base md:text-lg leading-relaxed text-center max-w-3xl mx-auto" id="about-text">
+                Berbasis di Indonesia dengan fokus operasional di wilayah Jabodetabek dan Banten. Sedang menempuh pendidikan S2, memiliki pengalaman luas di bidang ritel, pemasaran digital, peracikan konten kreatif, serta pengembangan platform web undangan pernikahan digital.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 px-6 max-w-5xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center text-brand-500" id="skills-title">Keahlian & Kompetensi</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-6 rounded-2xl card-soft hover:border-brand-500 transition">
+                <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4 text-xl border border-brand-500/30">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-white" id="skill-1-title">Digital Marketing & Copywriting</h3>
+                <p class="text-slate-400 text-sm" id="skill-1-desc">Penyusunan strategi kampanye, pengelolaan kalender konten, manajemen iklan, dan penulisan naskah persuasif.</p>
+            </div>
+
+            <div class="p-6 rounded-2xl card-soft hover:border-brand-500 transition">
+                <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4 text-xl border border-brand-500/30">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-white" id="skill-2-title">AI Prompt Engineering</h3>
+                <p class="text-slate-400 text-sm" id="skill-2-desc">Pemanfaatan kecerdasan buatan untuk pembuatan teks, gambar, video pendek otomatis, dan efisiensi alur kerja kreatif.</p>
+            </div>
+
+            <div class="p-6 rounded-2xl card-soft hover:border-brand-500 transition">
+                <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4 text-xl border border-brand-500/30">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2 text-white" id="skill-3-title">Web Development & Undangan Digital</h3>
+                <p class="text-slate-400 text-sm" id="skill-3-desc">Pembuatan landing page profesional, tata letak antarmuka, serta platform undangan pernikahan digital interaktif.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 px-6 section-panel">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center text-brand-500" id="projects-title">Proyek Unggulan</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 rounded-2xl card-soft flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 text-xs font-semibold bg-brand-500/20 text-brand-400 rounded-full border border-brand-500/30" id="proj-tag-1">Web Platform</span>
+                            <i class="fa-solid fa-globe text-brand-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white" id="proj-1-title">Undangan Pernikahan Digital</h3>
+                        <p class="text-slate-300 text-sm mb-6 leading-relaxed" id="proj-1-desc">
+                            Platform interaktif dan responsif untuk pembuatan undangan pernikahan digital yang elegan, lengkap dengan RSVP dan fitur RSVP online.
+                        </p>
+                    </div>
+                    <a href="#contact" class="inline-flex items-center text-brand-400 hover:text-brand-300 font-semibold text-sm transition" id="proj-1-link">
+                        Pesan Pembuatan <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="p-6 rounded-2xl card-soft flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 text-xs font-semibold bg-brand-500/20 text-brand-400 rounded-full border border-brand-500/30" id="proj-tag-2">Campaign & Copywriting</span>
+                            <i class="fa-solid fa-bullseye text-brand-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white" id="proj-2-title">Strategi Pemasaran Digital & Konten AI</h3>
+                        <p class="text-slate-300 text-sm mb-6 leading-relaxed" id="proj-2-desc">
+                            Pengelolaan kampanye iklan, perancangan teks promosi komersial, dan otomatisasi pembuatan konten kreatif menggunakan teknologi AI terkini.
+                        </p>
+                    </div>
+                    <a href="#contact" class="inline-flex items-center text-brand-400 hover:text-brand-300 font-semibold text-sm transition" id="proj-2-link">
+                        Kolaborasi Bersama <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates" class="py-24 px-6 max-w-5xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold mb-12 text-center text-brand-500" id="cert-title">Sertifikat & Kredensial</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl card-soft flex items-start space-x-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 flex-shrink-0 border border-brand-500/30 mt-1">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-base text-white mb-1" id="cert-1-title">Sertifikasi Kompetensi Pemasaran Digital</h3>
+                    <p class="text-slate-400 text-xs mb-2" id="cert-1-org">Lembaga Sertifikasi Profesi / Platform Pembelajaran Online</p>
+                    <span class="text-xs text-brand-400 font-medium" id="cert-1-year">2023 - 2025</span>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-2xl card-soft flex items-start space-x-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 flex-shrink-0 border border-brand-500/30 mt-1">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-base text-white mb-1" id="cert-2-title">Pelatihan AI & Prompt Engineering Lanjutan</h3>
+                    <p class="text-slate-400 text-xs mb-2" id="cert-2-org">Program Pengembangan Profesional Digital</p>
+                    <span class="text-xs text-brand-400 font-medium" id="cert-2-year">2024 - 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="socials" class="py-24 px-6 section-panel">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-brand-500" id="social-title">Media Sosial & Jaringan</h2>
+            <p class="text-slate-300 text-sm md:text-base mb-10 max-w-xl mx-auto" id="social-desc">
+                Terhubung dengan saya melalui platform profesional dan sosial media di bawah ini untuk diskusi atau peluang kerja sama.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://linkedin.com" target="_blank" class="px-6 py-3 rounded-xl glass border border-brand-500/30 hover:border-brand-500 text-white font-medium flex items-center space-x-3 transition">
+                    <i class="fa-brands fa-linkedin text-xl text-brand-400"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="px-6 py-3 rounded-xl glass border border-brand-500/30 hover:border-brand-500 text-white font-medium flex items-center space-x-3 transition">
+                    <i class="fa-brands fa-instagram text-xl text-brand-400"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://github.com" target="_blank" class="px-6 py-3 rounded-xl glass border border-brand-500/30 hover:border-brand-500 text-white font-medium flex items-center space-x-3 transition">
+                    <i class="fa-brands fa-github text-xl text-brand-400"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 max-w-4xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-brand-500" id="contact-title">Hubungi Saya</h2>
+        <p class="text-slate-300 text-center mb-12 text-sm md:text-base" id="contact-desc">
+            Tertarik untuk berkolaborasi, mendiskusikan proyek, atau memesan undangan pernikahan digital? Silakan kirimkan pesan langsung melalui formulir di bawah ini.
+        </p>
+
+        <div class="glass p-8 rounded-3xl border border-brand-500/30">
+            <form onsubmit="handleSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2" id="label-name">Nama Lengkap</label>
+                        <input type="text" required class="w-full bg-neutral-900 border border-brand-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2" id="label-email">Email / WhatsApp</label>
+                        <input type="text" required class="w-full bg-neutral-900 border border-brand-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2" id="label-message">Pesan</label>
+                    <textarea rows="5" required class="w-full bg-neutral-900 border border-brand-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition text-sm"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium transition shadow-lg shadow-brand-600/20 border border-brand-500 text-sm" id="btn-submit">
+                    Kirim Pesan
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-neutral-950 border-t border-brand-500/25 text-center text-slate-500 text-xs">
+        <p id="footer-text">&copy; 2026 Anton Sujarwo. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        let currentLang = 'id';
+
+        const translations = {
+            id: {
+                navHome: "Beranda",
+                navAbout: "Tentang",
+                navSkills: "Keahlian",
+                navProjects: "Proyek",
+                navCertificates: "Sertifikat",
+                navSocials: "Media Sosial",
+                navContact: "Kontak",
+                heroBadge: "Digital Marketing, Copywriting & AI Specialist",
+                heroDesc: "Profesional di bidang pemasaran digital, copywriting, desain grafis ringan, serta pemanfaatan teknologi AI untuk solusi kreatif & pengembangan platform web.",
+                btnProjects: "Lihat Proyek",
+                btnContact: "Hubungi Saya",
+                aboutTitle: "Tentang Saya",
+                aboutText: "Berbasis di Indonesia dengan fokus operasional di wilayah Jabodetabek dan Banten. Sedang menempuh pendidikan S2, memiliki pengalaman luas di bidang ritel, pemasaran digital, peracikan konten kreatif, serta pengembangan platform web undangan pernikahan digital.",
+                skillsTitle: "Keahlian & Kompetensi",
+                skill1Title: "Digital Marketing & Copywriting",
+                skill1Desc: "Penyusunan strategi kampanye, pengelolaan kalender konten, manajemen iklan, dan penulisan naskah persuasif.",
+                skill2Title: "AI Prompt Engineering",
+                skill2Desc: "Pemanfaatan kecerdasan buatan untuk pembuatan teks, gambar, video pendek otomatis, dan efisiensi alur kerja kreatif.",
+                skill3Title: "Web Development & Undangan Digital",
+                skill3Desc: "Pembuatan landing page profesional, tata letak antarmuka, serta platform undangan pernikahan digital interaktif.",
+                projectsTitle: "Proyek Unggulan",
+                projTag1: "Web Platform",
+                projTag2: "Campaign & Copywriting",
+                proj1Title: "Undangan Pernikahan Digital",
+                proj1Desc: "Platform interaktif dan responsif untuk pembuatan undangan pernikahan digital yang elegan, lengkap dengan RSVP dan fitur RSVP online.",
+                proj1Link: "Pesan Pembuatan",
+                proj2Title: "Strategi Pemasaran Digital & Konten AI",
+                proj2Desc: "Pengelolaan kampanye iklan, perancangan teks promosi komersial, dan otomatisasi pembuatan konten kreatif menggunakan teknologi AI terkini.",
+                proj2Link: "Kolaborasi Bersama",
+                certTitle: "Sertifikat & Kredensial",
+                cert1Title: "Sertifikasi Kompetensi Pemasaran Digital",
+                cert1Org: "Lembaga Sertifikasi Profesi / Platform Pembelajaran Online",
+                cert1Year: "2023 - 2025",
+                cert2Title: "Pelatihan AI & Prompt Engineering Lanjutan",
+                cert2Org: "Program Pengembangan Profesional Digital",
+                cert2Year: "2024 - 2026",
+                socialTitle: "Media Sosial & Jaringan",
+                socialDesc: "Terhubung dengan saya melalui platform profesional dan sosial media di bawah ini untuk diskusi atau peluang kerja sama.",
+                contactTitle: "Hubungi Saya",
+                contactDesc: "Tertarik untuk berkolaborasi, mendiskusikan proyek, atau memesan undangan pernikahan digital? Silakan kirimkan pesan langsung melalui formulir di bawah ini.",
+                labelName: "Nama Lengkap",
+                labelEmail: "Email / WhatsApp",
+                labelMessage: "Pesan",
+                btnSubmit: "Kirim Pesan",
+                footerText: "© 2026 Anton Sujarwo. Seluruh Hak Cipta Dilindungi Undang-Undang.",
+                formSuccess: "Pesan berhasil dikirim!",
+                langToggle: "🌐 EN / ID"
+            },
+            en: {
+                navHome: "Home",
+                navAbout: "About",
+                navSkills: "Skills",
+                navProjects: "Projects",
+                navCertificates: "Certificates",
+                navSocials: "Socials",
+                navContact: "Contact",
+                heroBadge: "Digital Marketing, Copywriting & AI Specialist",
+                heroDesc: "Professional in digital marketing, copywriting, light graphic design, and AI-powered creative solutions for web platform development.",
+                btnProjects: "View Projects",
+                btnContact: "Contact Me",
+                aboutTitle: "About Me",
+                aboutText: "Based in Indonesia with operational focus in Jabodetabek and Banten. Currently pursuing a Master's degree, with broad experience in retail, digital marketing, creative content curation, and digital wedding invitation platform development.",
+                skillsTitle: "Skills & Expertise",
+                skill1Title: "Digital Marketing & Copywriting",
+                skill1Desc: "Campaign strategy design, content calendar management, ad management, and persuasive scriptwriting.",
+                skill2Title: "AI Prompt Engineering",
+                skill2Desc: "Using artificial intelligence to create text, images, short videos, and streamline creative workflow efficiency.",
+                skill3Title: "Web Development & Digital Invitations",
+                skill3Desc: "Professional landing page creation, interface layout design, and interactive digital wedding invitation platforms.",
+                projectsTitle: "Featured Projects",
+                projTag1: "Web Platform",
+                projTag2: "Campaign & Copywriting",
+                proj1Title: "Digital Wedding Invitation",
+                proj1Desc: "An interactive and responsive platform for elegant digital wedding invitations, complete with RSVP and online RSVP features.",
+                proj1Link: "Order Creation",
+                proj2Title: "Digital Marketing Strategy & AI Content",
+                proj2Desc: "Managing ad campaigns, designing commercial promotional copy, and automating creative content production using the latest AI technology.",
+                proj2Link: "Collaborate Together",
+                certTitle: "Certificates & Credentials",
+                cert1Title: "Digital Marketing Competency Certification",
+                cert1Org: "Professional Certification Body / Online Learning Platform",
+                cert1Year: "2023 - 2025",
+                cert2Title: "Advanced AI & Prompt Engineering Training",
+                cert2Org: "Digital Professional Development Program",
+                cert2Year: "2024 - 2026",
+                socialTitle: "Social Media & Network",
+                socialDesc: "Connect with me through the professional and social media channels below for discussion or collaboration opportunities.",
+                contactTitle: "Contact Me",
+                contactDesc: "Interested in collaborating, discussing a project, or ordering a digital wedding invitation? Please send a message through the form below.",
+                labelName: "Full Name",
+                labelEmail: "Email / WhatsApp",
+                labelMessage: "Message",
+                btnSubmit: "Send Message",
+                footerText: "© 2026 Anton Sujarwo. All Rights Reserved.",
+                formSuccess: "Message sent successfully!",
+                langToggle: "🌐 ID / EN"
+            }
+        };
+
+        function updateText(selector, text) {
+            document.querySelectorAll(selector).forEach(el => {
+                el.textContent = text;
+            });
+        }
+
+        function applyTranslations(lang) {
+            const t = translations[lang];
+
+            updateText('.nav-home', t.navHome);
+            updateText('.nav-about', t.navAbout);
+            updateText('.nav-skills', t.navSkills);
+            updateText('.nav-projects', t.navProjects);
+            updateText('.nav-certificates', t.navCertificates);
+            updateText('.nav-socials', t.navSocials);
+            updateText('.nav-contact', t.navContact);
+
+            document.getElementById('hero-badge').textContent = t.heroBadge;
+            document.getElementById('hero-desc').textContent = t.heroDesc;
+            document.getElementById('btn-projects').textContent = t.btnProjects;
+            document.getElementById('btn-contact').textContent = t.btnContact;
+
+            document.getElementById('about-title').textContent = t.aboutTitle;
+            document.getElementById('about-text').textContent = t.aboutText;
+
+            document.getElementById('skills-title').textContent = t.skillsTitle;
+            document.getElementById('skill-1-title').textContent = t.skill1Title;
+            document.getElementById('skill-1-desc').textContent = t.skill1Desc;
+            document.getElementById('skill-2-title').textContent = t.skill2Title;
+            document.getElementById('skill-2-desc').textContent = t.skill2Desc;
+            document.getElementById('skill-3-title').textContent = t.skill3Title;
+            document.getElementById('skill-3-desc').textContent = t.skill3Desc;
+
+            document.getElementById('projects-title').textContent = t.projectsTitle;
+            document.getElementById('proj-tag-1').textContent = t.projTag1;
+            document.getElementById('proj-tag-2').textContent = t.projTag2;
+            document.getElementById('proj-1-title').textContent = t.proj1Title;
+            document.getElementById('proj-1-desc').textContent = t.proj1Desc;
+            document.getElementById('proj-1-link').innerHTML = `${t.proj1Link} <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>`;
+
+            document.getElementById('proj-2-title').textContent = t.proj2Title;
+            document.getElementById('proj-2-desc').textContent = t.proj2Desc;
+            document.getElementById('proj-2-link').innerHTML = `${t.proj2Link} <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>`;
+
+            document.getElementById('cert-title').textContent = t.certTitle;
+            document.getElementById('cert-1-title').textContent = t.cert1Title;
+            document.getElementById('cert-1-org').textContent = t.cert1Org;
+            document.getElementById('cert-1-year').textContent = t.cert1Year;
+            document.getElementById('cert-2-title').textContent = t.cert2Title;
+            document.getElementById('cert-2-org').textContent = t.cert2Org;
+            document.getElementById('cert-2-year').textContent = t.cert2Year;
+
+            document.getElementById('social-title').textContent = t.socialTitle;
+            document.getElementById('social-desc').textContent = t.socialDesc;
+
+            document.getElementById('contact-title').textContent = t.contactTitle;
+            document.getElementById('contact-desc').textContent = t.contactDesc;
+            document.getElementById('label-name').textContent = t.labelName;
+            document.getElementById('label-email').textContent = t.labelEmail;
+            document.getElementById('label-message').textContent = t.labelMessage;
+            document.getElementById('btn-submit').textContent = t.btnSubmit;
+            document.getElementById('footer-text').textContent = t.footerText;
+
+            document.getElementById('lang-btn').textContent = t.langToggle;
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            applyTranslations(currentLang);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const inputs = form.querySelectorAll('input, textarea');
+            const fullName = inputs[0].value.trim();
+            const contact = inputs[1].value.trim();
+            const message = inputs[2].value.trim();
+
+            if (!fullName || !contact || !message) {
+                alert(currentLang === 'id' ? 'Harap isi semua kolom terlebih dahulu.' : 'Please fill in all fields first.');
+                return;
+            }
+
+            const whatsappNumber = '6281234567890';
+            const text = encodeURIComponent(
+                currentLang === 'id'
+                    ? `Halo Anton,\n\nNama: ${fullName}\nKontak: ${contact}\n\nPesan:\n${message}`
+                    : `Hello Anton,\n\nName: ${fullName}\nContact: ${contact}\n\nMessage:\n${message}`
+            );
+
+            window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+            form.reset();
+            alert(translations[currentLang].formSuccess);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            applyTranslations(currentLang);
+
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', handleSubmit);
+            }
+        });
+    </script>
+</body>
+</html>
